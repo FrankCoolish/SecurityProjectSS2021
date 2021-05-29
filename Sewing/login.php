@@ -4,11 +4,11 @@ $pass = "HusiSQILe";
 $pdo = new PDO('mysql:host=localhost;dbname=sewingdb', "sewing_site", $pass );
 
 if(isset($_GET['login'])) {
-    $email = $_POST['email'];
+    $name = $_POST['name'];
     $passwort = $_POST['passwort'];
 
-    $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
-    $result = $statement->execute(array('email' => $email));
+    $statement = $pdo->prepare("SELECT * FROM users WHERE user_name = :name");
+    $result = $statement->execute(array('name' => $name));
     $user = $statement->fetch();
 
     //Überprüfung des Passworts
