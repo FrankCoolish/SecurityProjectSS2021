@@ -18,7 +18,6 @@ session_start();
             <div id="overlay">
                 <div id="headline">
                     <h1>Startseite</h1>
-
                 </div>
                 <!-- The overlay -->
                 <div id="myNav" class="overlay">
@@ -40,7 +39,7 @@ session_start();
                             <li><a href="index.php">Startseite</a></li>
                             <li><a href="aboutMe.php">Über mich</a></li>
                             <li><a href="eBooks.php">Ebooks</a></li>
-                            <li><a href="freeBooks.php">Freebooks</a></li>>
+                            <li><a href="freeBooks.php">Freebooks</a></li>
                             <li><a href="einzelstuecke.php">Einzelstücke</a></li>
                             <li><a href="kontakt.php">Kontakt</a></li>
                         </ul>
