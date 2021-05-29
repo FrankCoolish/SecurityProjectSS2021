@@ -9,7 +9,6 @@ body {
     margin-left: 0;
     margin-top: 0;
 }
-
 #overlay{
     background-color: rgba(0,0,0,0.3);
     position: absolute;
@@ -17,6 +16,6 @@ body {
     height: 100%;
 }
 
-#headline{
-    text-align: center;
-}
+
+
+

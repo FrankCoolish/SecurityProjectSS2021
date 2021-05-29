@@ -2,12 +2,12 @@
 <html>
     <body>
     <?php
-        $user = "review_site";
-        $pass = "JxSLRkdutW";
-        $pdo = new PDO('mysql:host=localhost;dbname=reviews', $user, $pass );
-        $sql = "SELECT * FROM user_review";
+        $user = "sewing_site";
+        $pass = "HusiSQILe";
+        $pdo = new PDO('mysql:host=localhost;dbname=sewingdb', $user, $pass );
+        $sql = "SELECT * FROM users";
         foreach($pdo->query($sql) as $row) {
-            echo $row['reviewer_name']."<br />";
+            echo "Name: ".$row['user_name']."<br>"." Review: ".$row['user_pw']."<br />";
         }
         ?>
     </body>

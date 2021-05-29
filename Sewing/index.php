@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html>
     <head>
         <title>Sewing</title>
@@ -14,7 +17,8 @@
         <div id="page-wrapper">
             <div id="overlay">
                 <div id="headline">
-                    <h1>Sewing Startseite</h1>
+                    <h1>Startseite</h1>
+
                 </div>
                 <!-- The overlay -->
                 <div id="myNav" class="overlay">
@@ -25,9 +29,16 @@
                     <!-- Overlay content -->
                     <div class="overlay-content">
                         <ul class="links">
+                            <?php if(!isset($_SESSION['userid'])) {
+                                echo"<li id='login'><a href='login.php'>Login</a></li>";
+                                }else{
+                                $userid = $_SESSION['userid'];
+                                echo"<li><a>Benutzer: "."$userid"."</a></li>";
+                                echo "<li id='logout'><a href='logout.php'>Logout</a></li>";
+                                }
+                             ?>
                             <li><a href="index.php">Startseite</a></li>
                             <li><a href="aboutMe.php">Über mich</a></li>
-                            <li><a href="login.php">Log In</a></li>
                             <li><a href="eBooks.php">Ebooks</a></li>
                             <li><a href="freeBooks.php">Freebooks</a></li>>
                             <li><a href="einzelstuecke.php">Einzelstücke</a></li>

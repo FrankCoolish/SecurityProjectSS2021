@@ -1,3 +1,29 @@
+<?php
+session_start();
+$pass = "HusiSQILe";
+$pdo = new PDO('mysql:host=localhost;dbname=sewingdb', "sewing_site", $pass );
+
+
+if(isset($_GET['login'])) {
+    $email = $_POST['email'];
+    $passwort = $_POST['passwort'];
+
+    $statement = $pdo->prepare("SELECT * FROM users WHERE email = :email");
+
+    $result = $statement->execute(array('email' => $email));
+    $user = $statement->fetch();
+
+    //Überprüfung des Passworts
+    if ($user !== false && password_verify($passwort, $user['passwort'])) {
+        $_SESSION['userid'] = $user['user_name'];
+        die('Login erfolgreich als . Weiter zur <a href="index.php">Startseite</a>');
+    } else {
+        $errorMessage = "E-Mail oder Passwort war ungültig<br>";
+    }
+
+}
+?>
+
 <html>
     <head>
         <title>Sewing</title>
@@ -15,6 +41,11 @@
             <div id="overlay">
                 <div id="headline">
                     <h1>Login</h1>
+                    <?php
+                    if(isset($errorMessage)) {
+                        echo $errorMessage;
+                    }
+                    ?>
                 </div>
                 <!-- The overlay sideNav -->
                 <div id="myNav" class="overlay">
@@ -27,7 +58,7 @@
                         <ul class="links">
                             <li><a href="index.php">Startseite</a></li>
                             <li><a href="aboutMe.php">Über mich</a></li>
-                            <li><a href="login.php">Log In</a></li>
+                            <li><a href="login.php">Login</a></li>
                             <li><a href="eBooks.php">Ebooks</a></li>
                             <li><a href="freeBooks.php">Freebooks</a></li>>
                             <li><a href="einzelstuecke.php">Einzelstücke</a></li>
@@ -41,15 +72,19 @@
                     <!--<span onclick="openNav()">Menü</span>-->
                 </div>
                 <div id="Login-content">
-                    <label for="usernameInput">Benutzer:</label><br>
-                    <input type="text" id="usernameInput"><br>
-                    <label for="pwd">Passwort:</label><br>
-                    <input type="password" id="pwd"><br>
-                    <button id="ButtonLogin" onclick="login()">Login</button>
-                    <button id="ButtonBack" >Zurück</button>
-                    <button id="ButtonRegister" onclick="showRegister()">Registrieren</button>
-                    <!--<textarea id="userInput"></textarea>-->
+
+                    <form action="?login=1" method="post">
+                        E-Mail:<br>
+                        <input type="email" size="40" maxlength="250" name="email"><br><br>
+
+                        Dein Passwort:<br>
+                        <input type="password" size="40"  maxlength="250" name="passwort"><br>
+
+                        <input type="submit" value="Abschicken">
+                    </form>
+                    <button id="ButtonRegister" onclick="document.location.href='registrieren.php'">Registrieren</button>
                 </div>
+
 
             </div>
         </div>
