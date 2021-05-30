@@ -1,7 +1,22 @@
-#page-content{
-    margin-top: 15%;
+#page-content2{
+    margin-top: 5%;
     margin-left: 15%;
     margin-right: 15%;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    padding: 8px 16px 8px;
+    text-align: center;
+
+}
+
+#page-content{
+    margin-top: 5%;
+    margin-left: 15%;
+    margin-right: 15%;
+    background-color: rgba(0,0,0,0.4);
+    border-radius: 12px;
+    padding: 8px 16px 60px;
+
 }
 
 input[type=text], [type=email], [type=password] {
@@ -9,10 +24,12 @@ input[type=text], [type=email], [type=password] {
     padding: 12px 20px;
     margin: 8px 0;
     box-sizing: border-box;
+
 }
 
 input[type=submit]{
-    background-color: #4CAF50;
+    float: right;
+    background-color: darkolivegreen;
     border: none;
     color: white;
     padding: 16px 32px;
@@ -20,4 +37,40 @@ input[type=submit]{
     margin: 4px 2px;
     cursor: pointer;
     width: 100%;
+    max-width: 200px;
+    border-radius: 12px;
 }
+
+input[type=submit]:hover {
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+    background-color: olivedrab;
+}
+
+#ButtonBack{
+    background-color: rgba(0,0,0, 0.9);
+    font-size: 24px;
+    color: #818181;
+    width: 200px;
+    border: none;
+    border-bottom-right-radius: 18px;
+    border-top-right-radius: 18px;
+    text-decoration: none;
+}
+
+#ButtonRegister {
+    background-color: darkslateblue;
+    color: white;
+    border-radius: 12px;
+    padding: 16px 32px;
+    text-decoration: none;
+    cursor: pointer;
+    width: 100%;
+    max-width: 200px;
+    border: none;
+}
+
+#ButtonRegister:hover {
+    background-color: slateblue;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+

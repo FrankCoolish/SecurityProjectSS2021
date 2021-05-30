@@ -9,8 +9,6 @@ session_start();
         <link rel="stylesheet" href="assets/css/index.css" />
         <link rel="stylesheet" href="assets/css/sideNav.css" />
         <script src="https://kit.fontawesome.com/5046510dfa.js" crossorigin="anonymous"></script>
-
-
     </head>
     <body class="is-preload">
         <!-- Page Wrapper -->
@@ -29,19 +27,19 @@ session_start();
                     <div class="overlay-content">
                         <ul class="links">
                             <?php if(!isset($_SESSION['userid'])) {
-                                echo"<li id='login'><a href='login.php'>Login</a></li>";
+                                echo"<a id='login'><a href='login.php'>Login</a>";
                                 }else{
                                 $userid = $_SESSION['userid'];
-                                echo"<li><a>Benutzer: "."$userid"."</a></li>";
-                                echo "<li id='logout'><a href='logout.php'>Logout</a></li>";
+                                echo"<a>Benutzer: "."$userid"."</a>";
+                                echo "<a> id='logout'><a href='logout.php'>Logout</a>";
                                 }
                              ?>
-                            <li><a href="index.php">Startseite</a></li>
-                            <li><a href="aboutMe.php">Über mich</a></li>
-                            <li><a href="eBooks.php">Ebooks</a></li>
-                            <li><a href="freeBooks.php">Freebooks</a></li>
-                            <li><a href="einzelstuecke.php">Einzelstücke</a></li>
-                            <li><a href="kontakt.php">Kontakt</a></li>
+                            <a href="index.php">Startseite</a>
+                            <a href="aboutMe.php">Über mich</a>
+                            <a href="eBooks.php">Ebooks</a>
+                            <a href="freeBooks.php">Freebooks</a>
+                            <a href="einzelstuecke.php">Einzelstücke</a>
+                            <a href="kontakt.php">Kontakt</a>
                         </ul>
                     </div>
                 </div>

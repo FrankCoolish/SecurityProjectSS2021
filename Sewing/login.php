@@ -85,7 +85,10 @@ if(isset($_GET['login'])) {
 
                         <input type="submit" value="Login">
                     </form>
-                    <button id="ButtonRegister" onclick="document.location.href='registrieren.php'">Registrieren</button>
+                </div>
+                <div id="page-content2">
+                    <p>Noch kein Mitglied der Community? Dann Klick jetz auf <button id="ButtonRegister" onclick="document.location.href='registrieren.php'">Registrieren!</button></p>
+
                 </div>
 
 

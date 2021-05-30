@@ -18,8 +18,13 @@ $pdo = new PDO('mysql:host=localhost;dbname=sewingdb', 'sewing_site', $pass);
             <h1>Registrieren</h1>
 
         </div>
+        <div id="sideNavButton">
+            <button id="ButtonBack" onclick="document.location.href='login.php'">Zurück</button>
+            <!--<span onclick="openNav()">Menü</span>-->
+        </div>
 
         <div id="page-content">
+
             <?php
             $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden soll
 

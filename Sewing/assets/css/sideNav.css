@@ -1,8 +1,8 @@
 #ButtonMenu{
     background-color: rgba(0,0,0, 0.9);
-    font-size: 36px;
+    font-size: 24px;
     color: #818181;
-    width: 10%;
+    width: 200px;
     border: none;
     border-bottom-right-radius: 18px;
     border-top-right-radius: 18px;
