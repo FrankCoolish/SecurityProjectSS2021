@@ -16,6 +16,7 @@ footer .column {
     width: 50%;
 }
 
+
 /* Clear floats after the columns */
 footer .row:after {
     content: "";
