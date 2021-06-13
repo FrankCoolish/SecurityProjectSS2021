@@ -1,7 +1,9 @@
 <?php
 session_start();
-$pass = "HusiSQILe";
-$pdo = new PDO('mysql:host=localhost;dbname=sewingdb', 'sewing_site', $pass);
+const DB_USER = 'sewing_site';
+const DB_PASSWORD = 'HusiSQILe';
+
+$pdo = new PDO('mysql:host=localhost;dbname=sewingdb', DB_USER, DB_PASSWORD);
 ?>
 <!DOCTYPE html>
 <html>
@@ -9,13 +11,15 @@ $pdo = new PDO('mysql:host=localhost;dbname=sewingdb', 'sewing_site', $pass);
     <title>Registrierung</title>
     <link rel="stylesheet" href="assets/css/index.css" />
     <link rel="stylesheet" href="assets/css/register.css" />
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body class="is-preload">
 <!-- Page Wrapper -->
 <div id="page-wrapper">
     <div id="overlay">
         <div id="headline">
-            <h1>Registrieren</h1>
+            <h1>MySewingXP - Registrieren</h1>
 
         </div>
         <div id="sideNavButton">
@@ -23,7 +27,7 @@ $pdo = new PDO('mysql:host=localhost;dbname=sewingdb', 'sewing_site', $pass);
             <!--<span onclick="openNav()">Menü</span>-->
         </div>
 
-        <div id="page-content">
+        <div class="page-content">
 
             <?php
             $showFormular = true; //Variable ob das Registrierungsformular anezeigt werden soll
@@ -115,6 +119,11 @@ $pdo = new PDO('mysql:host=localhost;dbname=sewingdb', 'sewing_site', $pass);
             } //Ende von if($showFormular)
             ?>
         </div>
+    </div>
+    <?php
+    include('footer.php');
+    ?>
+</div>
 
 </body>
 </html>

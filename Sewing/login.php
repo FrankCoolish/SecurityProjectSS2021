@@ -1,107 +1,88 @@
 <?php
 session_start();
-$pass = "HusiSQILe";
-$pdo = new PDO('mysql:host=localhost;dbname=sewingdb', "sewing_site", $pass );
+const DB_USER = 'sewing_site';
+const DB_PASSWORD = 'HusiSQILe';
 
-if(isset($_GET['login'])) {
-    $name = $_POST['name'];
-    $passwort = $_POST['passwort'];
+$pdo = new PDO('mysql:host=localhost;dbname=sewingdb', DB_USER, DB_PASSWORD);
 
-    $statement = $pdo->prepare("SELECT * FROM users WHERE user_name = :name");
-    $result = $statement->execute(array('name' => $name));
-    $user = $statement->fetch();
-
-    //Überprüfung des Passworts
-    if ($user !== false && password_verify($passwort, $user['passwort'])) {
-        $_SESSION['userid'] = $user['user_name'];
-        die('Login erfolgreich als . Weiter zur <a href="index.php">Startseite</a>');
-    } else {
-        $errorMessage = "E-Mail oder Passwort war ungültig<br>";
-    }
-
-}
 ?>
 
 <html>
-    <head>
-        <title>Sewing</title>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-        <link rel="stylesheet" href="assets/css/index.css" />
-        <link rel="stylesheet" href="assets/css/sideNav.css" />
-        <link rel="stylesheet" href="assets/css/register.css" />
 
-        <script src="https://kit.fontawesome.com/5046510dfa.js" crossorigin="anonymous"></script>
-    </head>
-    <body>
-        <!-- Page Wrapper -->
-        <div id="page-wrapper">
-            <div id="overlay">
-                <div id="headline">
-                    <h1>Login</h1>
-                    <?php
-                    if(isset($errorMessage)) {
-                        echo $errorMessage;
-                    }
-                    ?>
-                </div>
-                <!-- The overlay sideNav -->
-                <div id="myNav" class="overlay">
+<head>
+    <title>Sewing</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="assets/css/index.css" />
+    <link rel="stylesheet" href="assets/css/sideNav.css" />
+    <link rel="stylesheet" href="assets/css/register.css" />
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-                    <!-- Button to close the overlay navigation -->
-                    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <script src="https://kit.fontawesome.com/5046510dfa.js" crossorigin="anonymous"></script>
+</head>
 
-                    <!-- Overlay content -->
-                    <div class="overlay-content">
-                        <ul class="links">
-                            <?php if(!isset($_SESSION['userid'])) {
-                                echo"<li id='login'><a href='login.php'>Login</a></li>";
-                            }else{
-                                $userid = $_SESSION['userid'];
-                                echo"<li><a>Benutzer: "."$userid"."</a></li>";
-                                echo "<li id='logout'><a href='logout.php'>Logout</a></li>";
-                            }
-                            ?>
-                            <li><a href="index.php">Startseite</a></li>
-                            <li><a href="aboutMe.php">Über mich</a></li>
-                            <li><a href="eBooks.php">Ebooks</a></li>
-                            <li><a href="freeBooks.php">Freebooks</a></li>
-                            <li><a href="einzelstuecke.php">Einzelstücke</a></li>
-                            <li><a href="kontakt.php">Kontakt</a></li>
-                        </ul>
-                    </div>
-                </div>
-                <!-- Use any element to open/show the overlay navigation menu -->
-                <div id="sideNavButton">
-                    <button id="ButtonMenu" onclick="openNav()">Menü  <i class="fas fa-bars"></i></button>
-                </div>
-                <div id="page-content">
-                    <form action="?login=1" method="post">
-                        Benutzername:<br>
-                        <input type="text" name="name"><br><br>
+<body>
+<!-- Page Wrapper -->
+<div id="page-wrapper">
+    <div id="overlay">
+        <div id="headline">
+            <h1>MySewingXP - Login</h1>
+            <?php
+            if (isset($errorMessage)) {
+                echo $errorMessage;
+            }
+            if (isset($_GET['login'])) {
 
-                        Dein Passwort:<br>
-                        <input type="password" name="passwort"><br><br>
-
-                        <input type="submit" value="Login">
-                    </form>
-                </div>
-                <div id="page-content2">
-                    <p>Noch kein Mitglied der Community? Dann Klick jetz auf <button id="ButtonRegister" onclick="document.location.href='registrieren.php'">Registrieren!</button></p>
-
-                </div>
+                $name = $_POST['name'];
+                $passwort = $_POST['password'];
 
 
-            </div>
+                $statement = $pdo->prepare("SELECT * FROM users WHERE user_name = :name");
+                $result = $statement->execute(array('name' => $name));
+                $user = $statement->fetch();
+
+                //Überprüfung des Passworts
+                if ($user !== false && $passwort == $user['password']) {
+                    $_SESSION['userid'] = $user['user_name'];
+                    echo('Login erfolgreich als . Weiter zur <a href="index.php">Startseite</a>');
+                } else {
+                    echo "yo was los";
+                    $errorMessage = "E-Mail oder Passwort war ungültig<br>";
+                }
+            }
+            ?>
         </div>
-        <!-- js Scripts -->
-        <script src="./assets/js/sideNav.js"></script>
-        <script src="./assets/js/login.js"></script>
+        <!-- The overlay sideNav -->
+        <?php
+        include('sidenav.php');
+        ?>
+        <div class="page-content">
+            <form action="?login=1" method="post">
+                Benutzername:<br>
+                <input type="text" name="name"><br><br>
 
+                Dein Passwort:<br>
+                <input type="password" name="password"><br><br>
 
-    </body>
+                <input type="submit" value="Login">
+            </form>
+        </div>
+        <div class="page-content" align="center">
+            <p>Noch kein Mitglied der Community? Dann Klicke jetzt auf <button id="ButtonRegister" onclick="document.location.href='registrieren.php'">Registrieren!</button></p>
+
+        </div>
+    </div>
+    <?php
+    include('footer.php');
+    ?>
+</div>
+
+<!-- js Scripts -->
+<script src="./assets/js/sideNav.js"></script>
+</body>
+
 </html>
-
 
 
 
