@@ -1,5 +1,5 @@
 <?php
-    echo '<div id="myNav" class="overlay">
+echo '<div id="myNav" class="overlay">
 
             <!-- Button to close the overlay navigation -->
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
@@ -8,7 +8,7 @@
             <div class="overlay-content">
                 <ul class="links">';
 
- if (!isset($_SESSION['userid'])) {
+if (!isset($_SESSION['userid'])) {
     echo "<a id='login'><a href='login.php'>Login</a>";
 } else {
     $userid = $_SESSION['userid'];
@@ -17,17 +17,15 @@
     echo "<a id='logout'><a href='logout.php'>Logout</a>";
 }
 ?>
-                    <a href="index.php">Startseite</a>
-                    <a href="aboutMe.php">Über mich</a>
-                    <a href="einzelstuecke.php">Einzelstücke</a>
-                    <a href="upload.php">Upload</a>
-                    <a href="impressum.php">Impressum</a>
-                    <a href="adminbereich.php">Adminbereich</a>
-                </ul>
-            </div>
-        </div>
-        <!-- Use any element to open/show the overlay navigation menu -->
-        <div id="sideNavButton">
-            <button id="ButtonMenu" onclick="openNav()">Menü <i class="fas fa-bars"></i></button>
-        </div>
-
+<a href="index.php">Startseite</a>
+<a href="aboutMe.php">Über mich</a>
+<a href="einzelstuecke.php">Einzelstücke</a>
+<a href="upload.php">Upload</a>
+<a href="impressum.php">Impressum</a>
+</ul>
+</div>
+</div>
+<!-- Use any element to open/show the overlay navigation menu -->
+<div id="sideNavButton">
+    <button id="ButtonMenu" onclick="openNav()">Menü <i class="fas fa-bars"></i></button>
+</div>
