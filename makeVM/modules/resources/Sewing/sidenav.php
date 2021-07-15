@@ -8,15 +8,15 @@ echo '<div id="myNav" class="overlay">
             <div class="overlay-content">
                 <ul class="links">';
 
-if (!isset($_SESSION['userid'])) {
-    echo "<a id='login'><a href='login.php'>Login</a>";
-} else {
-    $userid = $_SESSION['userid'];
-    echo "<a id='profile'><a href='profile.php'>Profile</a>";
-    echo "<a>Benutzer: " . "$userid" . "</a>";
-    echo "<a id='logout'><a href='logout.php'>Logout</a>";
-}
-?>
+            if (!isset($_SESSION['userid'])) {
+                echo "<a id='login'><a href='login.php'>Login</a>";
+            } else {
+                $userid = $_SESSION['userid'];
+                echo "<a id='profile'><a href='profile.php'>Profile</a>";
+                echo "<a>Benutzer: " . "$userid" . "</a>";
+                echo "<a id='logout'><a href='logout.php'>Logout</a>";
+            }
+            ?>
 <a href="index.php">Startseite</a>
 <a href="aboutMe.php">Über mich</a>
 <a href="einzelstuecke.php">Einzelstücke</a>

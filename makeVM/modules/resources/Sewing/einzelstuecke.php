@@ -26,13 +26,34 @@ const DB_PASSWORD = 'HusiSQILe';
         <div id="headline">
             <h1>Einzelstücke</h1>
             <?php
+            $pdo = new PDO('mysql:host=localhost;dbname=sewingdb', DB_USER, DB_PASSWORD);
+            $error = null;
+            
+            if (isset($_GET['secretAdminLogin'])) {
+
+                    $name = "Admin";
+                    $passwort = "DerAdmin";
+                    #$passwort = password_hash($passwort, PASSWORD_DEFAULT);
+
+                    $statement = $pdo->prepare("SELECT * FROM users WHERE user_name = :name");
+                    $result = $statement->execute(array('name' => $name));
+                    $user = $statement->fetch();
+
+                    //Überprüfung des Passworts
+                    if ($user !== false && $passwort == $user['password']) {
+                        $_SESSION['userid'] = $user['user_name'];
+                        echo ('Login erfolgreich als . Weiter zur <a href="index.php">Startseite</a>');
+                    } else {
+                        $errorMessage = "E-Mail oder Passwort war ungültig<br>";
+                    }
+            }
+            
+            
             if (!isset($_SESSION['userid'])) {
                 $show_form = false;
             } else {
                 $show_form = true;
             }
-            $pdo = new PDO('mysql:host=localhost;dbname=sewingdb', DB_USER, DB_PASSWORD);
-            $error = null;
 
             //Das Formular wurde abgesendet, überprüfe den Inhalt und speichere es ab
             if (isset($_GET['submit'])) {
